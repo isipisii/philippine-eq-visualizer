@@ -1,0 +1,3 @@
+export const ACTION_TYPES = {
+    FETCH_EQ_DATAS: "FETCH_EQ_DATAS",
+}
