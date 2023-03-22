@@ -63,7 +63,7 @@ const App = () => {
       >
         <NavigationControl />
         {earthquakeMarkers}
-        <Menu earthquakes={earthquakes} />
+        <Menu earthquakes={earthquakes} setPopUpInfo={setPopUpInfo} />
 
         {popUpInfo && (
           // pop for details of earthquake

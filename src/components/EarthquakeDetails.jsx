@@ -1,15 +1,15 @@
 import React from 'react'
 
-const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler }) => {
+const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, earthquake, setPopUpInfo }) => {
   const date = new Date(time);
   const normalTime = date.toLocaleString();
   const magnitude = title.split("").slice(0, 5).join("");
-  console.log(magnitude)
   
   return (
     <div className='bg-black'
       onClick={() => {
         flyToHandler(latitude, longitude)
+        setPopUpInfo(earthquake)
       }}
     >
         <p className='text-white'>{title}</p>
