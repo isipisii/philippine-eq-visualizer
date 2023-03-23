@@ -6,15 +6,15 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
   const magnitude = title.split("").slice(0, 5).join("");
   
   return (
-    <div className='bg-black'
+    <div className="p-2 bg-[#fff]"
       onClick={() => {
         flyToHandler(latitude, longitude)
         setPopUpInfo(earthquake)
       }}
     >
-        <p className='text-white'>{title}</p>
-        <p className='text-white'>{normalTime}</p>
-        <p className='text-white'>{magnitude}</p>
+        <p className='text-black'>{title}</p>
+        <p className='text-black'>{normalTime}</p>
+        <p className='text-black'>{magnitude}</p>
     </div>
   )
 }

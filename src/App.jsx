@@ -6,9 +6,10 @@ import {
   // useCallback,
   // useMemo,
 } from "react";
-import Map, { NavigationControl, Marker, useMap } from "react-map-gl";
+import Map, { NavigationControl, Marker } from "react-map-gl";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import LRUCache from "lru-cache";
 
 import { GlobalContext } from "./utils/Context";
 
@@ -17,14 +18,39 @@ import Menu from "./components/Menu";
 import PopUp from "./components/PopUp";
 
 const App = () => {
-  const { getEarthquakes, earthquakes, flyToHandler } =
-    useContext(GlobalContext);
+  const { getEarthquakes, earthquakes, flyToHandler } = useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-  const { VITE_MAP_KEY } = import.meta.env;
+  const key = import.meta.env.VITE_MAP_KEY;
+  const [mapStyle, setMapStyle] = useState();
+
+  const cache = new LRUCache({
+    max: 50,
+    maxAge: 1000 * 60 * 60, 
+  });
+
+  useEffect(() => {
+    const cachedStyle = cache.get(key);
+
+    if (cachedStyle) {
+      setMapStyle(cachedStyle);
+    } else {
+      fetch(`https://api.maptiler.com/maps/toner-v2/style.json?key=${key}`)
+        .then((response) => response.json())
+        .then((style) => {
+          cache.set(key, style);
+          setMapStyle(style);
+        })
+        .catch((error) => {
+          console.error("Error fetching map style:", error);
+        });
+    }
+  }, [key]);
 
   useEffect(() => {
     getEarthquakes();
   }, []);
+
+  console.log(earthquakes);
 
   const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
     return (
@@ -55,18 +81,17 @@ const App = () => {
         initialViewState={{
           longitude: 122.982,
           latitude: 11.552,
-          zoom: 6,
           pitch: 30,
+          minZoom: 5,
         }}
         style={{ width: "100%", height: "100vh" }}
-        mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${VITE_MAP_KEY}`}
+        mapStyle={mapStyle}
       >
         <NavigationControl />
         {earthquakeMarkers}
         <Menu earthquakes={earthquakes} setPopUpInfo={setPopUpInfo} />
-
         {popUpInfo && (
-          // pop for details of earthquake
+          // pop up details of the earthquake
           <PopUp popUpInfo={popUpInfo} setPopUpInfo={setPopUpInfo} />
         )}
       </Map>

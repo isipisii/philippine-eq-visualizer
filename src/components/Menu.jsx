@@ -7,8 +7,8 @@ const Menu = ({ setPopUpInfo }) => {
   const { earthquakes, flyToHandler } = useContext(GlobalContext);
 
   return (
-    <div className=" w-[400px] h-[500px] bg-white absolute overflow-y-auto">
-      <div>
+    <div className="w-[400px] h-[500px] rounded-sm bg-[#00000085] backdrop-blur-2xl p-2 absolute overflow-y-auto">
+      <div className="flex gap-[1rem] flex-col">
         {earthquakes[0]?.map((earthquake, index) => (
           <EarthquakeDetails
             key={index}
