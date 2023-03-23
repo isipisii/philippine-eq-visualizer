@@ -18,16 +18,18 @@ import Menu from "./components/Menu";
 import PopUp from "./components/PopUp";
 
 const App = () => {
-  const { getEarthquakes, earthquakes, flyToHandler } = useContext(GlobalContext);
+  const { getEarthquakes, earthquakes, flyToHandler } =
+    useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
   const key = import.meta.env.VITE_MAP_KEY;
   const [mapStyle, setMapStyle] = useState();
 
   const cache = new LRUCache({
     max: 50,
-    maxAge: 1000 * 60 * 60, 
+    maxAge: 1000 * 60 * 60,
   });
 
+  //for caching the map tile
   useEffect(() => {
     const cachedStyle = cache.get(key);
 
@@ -41,7 +43,7 @@ const App = () => {
           setMapStyle(style);
         })
         .catch((error) => {
-          console.error("Error fetching map style:", error);
+          console.error(error);
         });
     }
   }, [key]);
@@ -52,6 +54,7 @@ const App = () => {
 
   console.log(earthquakes);
 
+  //map markers
   const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
     return (
       <Marker

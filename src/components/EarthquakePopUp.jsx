@@ -1,14 +1,11 @@
 import React from "react";
 
-const EarthquakePopUp = ({ time, place, latitude, longitude }) => {
-  
-  const date = new Date(time);
-  const normalTime = date.toLocaleString(); //convert time into 
+const EarthquakePopUp = ({  place, latitude, longitude }) => {
+   //convert time into 
 
   return (
-    <div>
-      <h1 className="text-black">{place}</h1>
-      <p className="text-black">{normalTime}</p>
+    <div className="p-2">
+      <h1 className="text-black font-ubuntu font-bold text-[1rem] mb-2">{place}</h1>
       <p className="text-black">Lat: {latitude} <br /> Longi: {longitude}</p>
     </div>
   );

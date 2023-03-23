@@ -4,7 +4,9 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
-
+      fontFamily: {
+        'ubuntu': ['Ubuntu', "sans-serif"]
+      },
     },
     screens: {
       xs: "480px",

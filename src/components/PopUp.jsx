@@ -8,10 +8,9 @@ const PopUp = ({ setPopUpInfo, popUpInfo}) => {
       longitude={popUpInfo?.geometry?.coordinates[0]}
       latitude={popUpInfo?.geometry?.coordinates[1]}
       onClose={() => setPopUpInfo(null)}
-    >
+    > 
       <EarthquakePopUp
         place={popUpInfo?.properties?.place}
-        time={popUpInfo?.properties?.time}
         longitude={popUpInfo?.geometry?.coordinates[0]}
         latitude={popUpInfo?.geometry?.coordinates[1]}
       />
