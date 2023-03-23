@@ -12,7 +12,7 @@ const Context = ({ children }) => {
 
   const getEarthquakes = async () => {
     try {
-      const response = await axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-03-15&endtime=2023-03-23&minmagnitude=1&maxlatitude=20.97&minlatitude=3.86&maxlongitude=127.96&minlongitude=116.87");
+      const response = await axios.get("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-03-01&endtime=2023-03-23&minmagnitude=1&maxlatitude=20.97&minlatitude=3.86&maxlongitude=127.96&minlongitude=116.87");
       dispatch({ type: ACTION_TYPES.FETCH_EQ_DATAS, payload: response.data.features });
     } catch (error) {
       console.error(error);
