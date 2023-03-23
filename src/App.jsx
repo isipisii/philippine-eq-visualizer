@@ -21,8 +21,8 @@ const App = () => {
   const { getEarthquakes, earthquakes, flyToHandler } =
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-  const key = import.meta.env.VITE_MAP_KEY;
   const [mapStyle, setMapStyle] = useState();
+  const key = import.meta.env.VITE_MAP_KEY;
 
   const cache = new LRUCache({
     max: 50,
@@ -51,8 +51,6 @@ const App = () => {
   useEffect(() => {
     getEarthquakes();
   }, []);
-
-  console.log(earthquakes);
 
   //map markers
   const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
