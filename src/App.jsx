@@ -1,11 +1,4 @@
-import {
-  useContext,
-  useEffect,
-  useState,
-  // useRef,
-  // useCallback,
-  // useMemo,
-} from "react";
+import { useContext, useEffect, useState } from "react";
 import Map, { NavigationControl, Marker } from "react-map-gl";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useMap } from "react-map-gl";
 import EarthquakeDetails from "./EarthquakeDetails";
 import { GlobalContext } from "../utils/Context";
 
@@ -7,7 +6,7 @@ const Menu = ({ setPopUpInfo }) => {
   const { earthquakes, flyToHandler } = useContext(GlobalContext);
 
   return (
-      <div className="absolute top-4 left-4 bottom-4 rounded-2xl shadow-2xl shadow-black bg-[#6c757da0] backdrop-blur-2xl p-4">
+      <div className="absolute top-4 left-4 bottom-4 rounded-2xl bg-[#6c757da0] backdrop-blur-2xl p-4">
         <div className="p-2">
           <h1 className="text-white text-[1.7rem] font-ubuntu mb-2 font-medium">
             Philippine Earthquake Visualizer
