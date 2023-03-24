@@ -55,7 +55,7 @@ const Context = ({ children }) => {
   const flyToHandler = (lat, longi) => {
     map.flyTo({
       center: [longi, lat],
-      zoom: 10,
+      zoom: 7,
     });
   };
 

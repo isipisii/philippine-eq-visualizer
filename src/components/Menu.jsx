@@ -2,6 +2,9 @@ import { useContext, useState } from "react";
 import EarthquakeDetails from "./EarthquakeDetails";
 import { GlobalContext } from "../utils/Context";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+
 const Menu = ({ setPopUpInfo }) => {
   const { earthquakes, flyToHandler } = useContext(GlobalContext);
   const [clicked, setClicked] = useState(false);
@@ -11,7 +14,7 @@ const Menu = ({ setPopUpInfo }) => {
       className={`menu absolute rounded-2xl h-[85%] left-4 right-4
       ${
         clicked
-          ? "bottom-[-80%] transition-all duration-500"
+          ? "bottom-[-79%] transition-all duration-500"
           : "bottom-[-40%] transition-all duration-500"
       }
       bg-[#020202a0] backdrop-blur-xl 
@@ -19,9 +22,9 @@ const Menu = ({ setPopUpInfo }) => {
     >
       <button
         onClick={() => setClicked((prevClick) => !prevClick)}
-        className="block md:hidden text-white mx-auto mt-[-1rem] mb-4"
+        className="block md:hidden text-white mx-auto mt-[-1.5rem] mb-4"
       >
-        clickme biatch
+        <FontAwesomeIcon icon={clicked ? faChevronUp : faChevronDown} className="text-[1rem] "/>
       </button>
       <div className="mb-2 px-4">
         <h1 className="text-white text-[1.5rem] sm:text-[1.7rem] font-ubuntu mb-2 font-medium">
