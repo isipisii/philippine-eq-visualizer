@@ -6,7 +6,7 @@ const EarthquakePopUp = ({  place, latitude, longitude }) => {
   return (
     <div className="p-2">
       <h1 className="text-black font-ubuntu font-bold text-[1rem] mb-2">{place}</h1>
-      <p className="text-black font-ubuntu">Lat: {latitude} <br /> Longi: {longitude}</p>
+      <p className="text-black font-ubuntu">Latitude: {latitude} <br/> Longitude: {longitude}</p>
     </div>
   );
 };

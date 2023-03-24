@@ -1,4 +1,4 @@
 export const ACTION_TYPES = {
     FETCH_EQ_DATAS: "FETCH_EQ_DATAS",
-    LOADING: "LOADING"
+    LOADING: "LOADING",
 }

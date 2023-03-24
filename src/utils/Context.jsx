@@ -11,7 +11,11 @@ const Context = ({ children }) => {
   const key = import.meta.env.VITE_MAP_KEY;
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const [mapStyle, setMapStyle] = useState();
-  const { map } = useMap();
+  const { map } = useMap();    
+  const cache = new LRUCache({
+    max: 50,
+    maxAge: 1000 * 60 * 60,
+  });
 
   const getEarthquakes = async () => {
     try {
@@ -29,11 +33,7 @@ const Context = ({ children }) => {
     }
   };
 
-  const cache = new LRUCache({
-    max: 50,
-    maxAge: 1000 * 60 * 60,
-  });
-
+    //for caching the map tile
   useEffect(() => {
     const cachedStyle = cache.get(key);
 
@@ -51,7 +51,7 @@ const Context = ({ children }) => {
         });
     }
   }, [key]);
-
+  
   const flyToHandler = (lat, longi) => {
     map.flyTo({
       center: [longi, lat],
@@ -66,7 +66,7 @@ const Context = ({ children }) => {
         getEarthquakes,
         flyToHandler,
         key,
-        mapStyle
+        mapStyle,
       }}
     >
       {children}
