@@ -2,6 +2,7 @@ import { ACTION_TYPES } from "./Actions";
 
 export const INITIAL_STATE = {
   earthquakes: [],
+  loading: false
 };
 
 export const reducer = (state, action) => {
@@ -11,5 +12,10 @@ export const reducer = (state, action) => {
         ...state,
         earthquakes: [...state.earthquakes, action.payload],
       };
+    case ACTION_TYPES.LOADING:
+      return{
+        ...state,
+        loading: action.payload
+      }
   }
 };

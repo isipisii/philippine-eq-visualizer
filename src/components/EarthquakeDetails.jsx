@@ -16,7 +16,7 @@ const EarthquakeDetails = ({
 
   return (
     <div
-      className="p-4 bg-[#403e3ea3] hover:scale-105 transition rounded-[7px] flex justify-between cursor-pointer"
+      className="p-4 bg-[#403e3ea3] hover:scale-105 transition rounded-[7px] flex justify-between cursor-pointer active:bg-[#343333a3]"
       onClick={() => {
         flyToHandler(latitude, longitude);
         setPopUpInfo(earthquake);

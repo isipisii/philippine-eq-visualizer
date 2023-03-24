@@ -11,35 +11,11 @@ import Menu from "./components/Menu";
 import PopUp from "./components/PopUp";
 
 const App = () => {
-  const { getEarthquakes, earthquakes, flyToHandler } =
+  const { getEarthquakes, earthquakes, flyToHandler, loading, mapStyle } =
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-  const [mapStyle, setMapStyle] = useState();
-  const key = import.meta.env.VITE_MAP_KEY;
-
-  const cache = new LRUCache({
-    max: 50,
-    maxAge: 1000 * 60 * 60,
-  });
 
   //for caching the map tile
-  useEffect(() => {
-    const cachedStyle = cache.get(key);
-
-    if (cachedStyle) {
-      setMapStyle(cachedStyle);
-    } else {
-      fetch(`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`)
-        .then((response) => response.json())
-        .then((style) => {
-          cache.set(key, style);
-          setMapStyle(style);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [key]);
 
   useEffect(() => {
     getEarthquakes();
