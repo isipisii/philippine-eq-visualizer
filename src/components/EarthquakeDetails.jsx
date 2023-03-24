@@ -16,7 +16,7 @@ const EarthquakeDetails = ({
 
   return (
     <div
-      className="p-4 bg-[#fff] border hover:scale-105 transition rounded-[7px] flex justify-between cursor-pointer"
+      className="p-4 bg-[#403e3ea3] hover:scale-105 transition rounded-[7px] flex justify-between cursor-pointer"
       onClick={() => {
         flyToHandler(latitude, longitude);
         setPopUpInfo(earthquake);
@@ -24,11 +24,11 @@ const EarthquakeDetails = ({
     >
       {" "}
       <div>
-        <p className="text-black font-bold text-[.9rem] font-ubuntu">{place}</p>
-        <p className="text-black">{normalTime}</p>
+        <p className="text-white font-bold text-[.9rem] font-ubuntu">{place}</p>
+        <p className="text-[#ffffff] font-ubuntu">{normalTime}</p>
       </div>
       <div>
-        <p>{magnitude}</p>
+        <p className="font-ubuntu text-[#ffffff] font-medium">{magnitude}</p>
       </div>
     </div>
   );

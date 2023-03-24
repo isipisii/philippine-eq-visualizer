@@ -29,7 +29,7 @@ const App = () => {
     if (cachedStyle) {
       setMapStyle(cachedStyle);
     } else {
-      fetch(`https://api.maptiler.com/maps/toner-v2/style.json?key=${key}`)
+      fetch(`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`)
         .then((response) => response.json())
         .then((style) => {
           cache.set(key, style);
@@ -45,6 +45,12 @@ const App = () => {
     getEarthquakes();
   }, []);
 
+  // const findInEarthquakeDetails = (id) => {
+  //   const temporaryArr = earthquakes[0]?.map((earthquake) =>
+  //     earthquake?.id === id ? { ...earthquake, isActive: true } : earthquake
+  //   );
+    
+  // };
   //map markers
   const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
     return (
