@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import Map, { NavigationControl, Marker } from "react-map-gl";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import LRUCache from "lru-cache";
 
 import { GlobalContext } from "./utils/Context";
 
 import Pin from "./components/Pin";
 import Menu from "./components/Menu";
 import PopUp from "./components/PopUp";
+import Load from "./components/Load";
 
 const App = () => {
   const { getEarthquakes, earthquakes, flyToHandler, loading, mapStyle } =
@@ -25,7 +25,7 @@ const App = () => {
   //   const temporaryArr = earthquakes[0]?.map((earthquake) =>
   //     earthquake?.id === id ? { ...earthquake, isActive: true } : earthquake
   //   );
-    
+
   // };
   //map markers
   const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
@@ -49,7 +49,9 @@ const App = () => {
     );
   });
 
-  return (
+  return loading ? (
+    <Load loading={loading}/>
+  ) : (
     <>
       <Map
         id="map"
@@ -57,8 +59,8 @@ const App = () => {
         initialViewState={{
           longitude: 122.982,
           latitude: 11.552,
-          pitch: 30,
-          minZoom: 5,
+          zoom: 6,
+          pitch: 85
         }}
         style={{ width: "100%", height: "100vh" }}
         mapStyle={mapStyle}

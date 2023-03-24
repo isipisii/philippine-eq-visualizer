@@ -1,15 +1,6 @@
 import React from "react";
 
-const EarthquakeDetails = ({
-  title,
-  time,
-  longitude,
-  latitude,
-  flyToHandler,
-  earthquake,
-  setPopUpInfo,
-  place,
-}) => {
+const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, earthquake, setPopUpInfo, place }) => {
   const date = new Date(time);
   const normalTime = date.toLocaleString();
   const magnitude = title.split("").slice(0, 5).join("");
@@ -22,7 +13,6 @@ const EarthquakeDetails = ({
         setPopUpInfo(earthquake);
       }}
     >
-      {" "}
       <div>
         <p className="text-white font-bold text-[.9rem] font-ubuntu">{place}</p>
         <p className="text-[#ffffff] font-ubuntu">{normalTime}</p>

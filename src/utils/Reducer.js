@@ -2,7 +2,7 @@ import { ACTION_TYPES } from "./Actions";
 
 export const INITIAL_STATE = {
   earthquakes: [],
-  loading: false
+  loading: true
 };
 
 export const reducer = (state, action) => {
