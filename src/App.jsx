@@ -11,23 +11,14 @@ import PopUp from "./components/PopUp";
 import Load from "./components/Load";
 
 const App = () => {
-  const { getEarthquakes, earthquakes, flyToHandler, loading, mapStyle } =
+  const { getEarthquakes, earthquakes, flyToHandler, loading, key } =
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-
-  //for caching the map tile
 
   useEffect(() => {
     getEarthquakes();
   }, []);
 
-  // const findInEarthquakeDetails = (id) => {
-  //   const temporaryArr = earthquakes[0]?.map((earthquake) =>
-  //     earthquake?.id === id ? { ...earthquake, isActive: true } : earthquake
-  //   );
-
-  // };
-  //map markers
   const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
     return (
       <Marker
@@ -63,7 +54,7 @@ const App = () => {
           pitch: 85
         }}
         style={{ width: "100%", height: "100vh" }}
-        mapStyle={mapStyle}
+        mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`}
       >
         <NavigationControl />
         {earthquakeMarkers}

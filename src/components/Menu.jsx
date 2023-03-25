@@ -11,14 +11,14 @@ const Menu = ({ setPopUpInfo }) => {
 
   return (
     <div
-      className={`menu absolute rounded-2xl h-[85%] w-[100%] md:w-[38%]
+      className={`menu absolute rounded-2xl h-[85%] md:h-auto w-[100%] md:w-[38%]
       ${
         clicked
-          ? "bottom-[-79%] transition-all duration-500"
+          ? "bottom-[-80%] transition-all duration-500"
           : "bottom-[-40%] transition-all duration-500"
       }
       bg-[#020202a0] backdrop-blur-xl 
-      px-4 py-8 md:py-6 md:top-4 md:left-4 md:bottom-4 md:right-auto`}
+      px-4 py-8 md:py-6 md:top-4 md:left-4 md:bottom-auto md:right-auto`}
     >
       <button
         onClick={() => setClicked((prevClick) => !prevClick)}
@@ -34,7 +34,7 @@ const Menu = ({ setPopUpInfo }) => {
           Recent earthquakes in the Philippines
         </p>
       </div>
-      <div className=" overflow-y-auto h-[40%] sm:h-[90%]">
+      <div className=" overflow-y-auto md:h-[auto] max-h-[400px] h-[35%]">
         <div className="flex gap-[1rem] flex-col p-4 ">
           {earthquakes[0]?.map((earthquake, index) => (
             <EarthquakeDetails
