@@ -9,13 +9,14 @@ const GlobalContext = createContext();
 const Context = ({ children }) => {
   const key = import.meta.env.VITE_MAP_KEY;
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { map } = useMap();    
+
+  const { map } = useMap();
 
   const getEarthquakes = async () => {
-    try {
+    try { 
       dispatch({ type: ACTION_TYPES.LOADING, payload: true });
       const response = await axios.get(
-        "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-03-20&endtime=2023-03-25&minmagnitude=1&maxlatitude=20.97&minlatitude=3.86&maxlongitude=127.96&minlongitude=116.87"
+        `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=1&maxlatitude=20.97&minlatitude=3.86&maxlongitude=127.96&minlongitude=116.87`
       );
       dispatch({
         type: ACTION_TYPES.FETCH_EQ_DATAS,
@@ -27,8 +28,6 @@ const Context = ({ children }) => {
     }
   };
 
-    //for caching the map tile
-  
   const flyToHandler = (lat, longi) => {
     map.flyTo({
       center: [longi, lat],
@@ -42,7 +41,7 @@ const Context = ({ children }) => {
         ...state,
         getEarthquakes,
         flyToHandler,
-        key
+        key,
       }}
     >
       {children}

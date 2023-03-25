@@ -19,7 +19,9 @@
     "mapbox-gl": "^2.13.0",
     "maplibre-gl": "^2.4.0",
     "react": "^18.2.0",
+    "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-loaders": "^3.0.1",
     "react-map-gl": "^7.0.21",
     "react-spinners": "^0.13.8"

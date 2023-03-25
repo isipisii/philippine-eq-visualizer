@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import { BiPulse } from 'react-icons/bi'
 
 const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, earthquake, setPopUpInfo, place }) => {
   const [color, setColor] = useState("")
@@ -18,13 +18,11 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
       } else if (m >= 7.0 && m <= 7.9) {
         setColor("text-yellow-400")
       } else if (m >= 8.0 && m <= 9.9) {
-        setColor("text-yellow-400")
-      } else setColor("text-red")
+        setColor("text-orange-600")
+      } else setColor("text-red-600")
     }
     styleMagnitude(parsedMagnitude);
   }, [parsedMagnitude]);
-
-  console.log(color)
 
   return (
     <div
@@ -35,11 +33,11 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
       }}
     >
       <div>
-        <p className="text-white font-bold sm:text-[1rem] text-[.9rem] font-ubuntu mb-2">{place}</p>
+        <p className="text-white font-bold md:text-[1rem] sm:text-[.9rem] text-[.8rem] font-ubuntu sm:mb-2 mb-1" >{place}</p>
         <p className="text-[#ffffff8b] font-ubuntu sm:text-[.8rem] text-[.7rem] ">{normalTime}</p>
       </div>
       <div>
-        <p className={`font-ubuntu font-bold ${color}`}>M {magnitude}</p>
+        <p className={`font-ubuntu font-bold ${color}`}> <BiPulse className={` text-[1.3rem] md:text-[1.5rem] ${color}`} /> M {magnitude}</p>
       </div>
     </div>
   );

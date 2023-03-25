@@ -9,17 +9,19 @@ import Pin from "./components/Pin";
 import Menu from "./components/Menu";
 import PopUp from "./components/PopUp";
 import Load from "./components/Load";
+import ColorLegend from "./components/ColorLegend";
 
 const App = () => {
   const { getEarthquakes, earthquakes, flyToHandler, loading, key } =
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
+  const lastArr = earthquakes.length - 1
 
   useEffect(() => {
     getEarthquakes();
   }, []);
 
-  const earthquakeMarkers = earthquakes[0]?.map((earthquake, index) => {
+  const earthquakeMarkers = earthquakes[lastArr]?.map((earthquake, index) => {
     return (
       <Marker
         key={index}
@@ -58,11 +60,12 @@ const App = () => {
       >
         <NavigationControl />
         {earthquakeMarkers}
-        <Menu earthquakes={earthquakes} setPopUpInfo={setPopUpInfo} />
+        <Menu setPopUpInfo={setPopUpInfo} />
         {popUpInfo && (
           // pop up details of the earthquake
           <PopUp popUpInfo={popUpInfo} setPopUpInfo={setPopUpInfo} />
         )}
+        <ColorLegend />
       </Map>
     </>
   );
