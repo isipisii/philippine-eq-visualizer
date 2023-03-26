@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { BiPulse } from 'react-icons/bi'
 
-const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, earthquake, setPopUpInfo, place }) => {
+const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, earthquake, setPopUpInfo, place, parsedAndCastedMagnitude }) => {
   const [color, setColor] = useState("")
   const date = new Date(time);
   const normalTime = date.toLocaleString();
-  const magnitude = title.split("").slice(1, 5).join("");
-  const parsedMagnitude = parseFloat(magnitude);
+  const magnitude = parsedAndCastedMagnitude(title);
 
-  
+  console.log(magnitude); 
+
   useEffect(() => {
     function styleMagnitude(m) {
       if (m >= 1.0 && m <= 4.9) {
@@ -21,8 +21,8 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
         setColor("text-orange-600")
       } else setColor("text-red-600")
     }
-    styleMagnitude(parsedMagnitude);
-  }, [parsedMagnitude]);
+    styleMagnitude(magnitude);
+  }, [magnitude]);
 
   return (
     <div

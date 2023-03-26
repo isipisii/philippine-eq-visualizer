@@ -35,6 +35,11 @@ const Context = ({ children }) => {
     });
   };
 
+  const parsedAndCastedMagnitude = (title) => {
+    const magnitude = title.split("").slice(1, 5).join("");
+    return parseFloat(magnitude);
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -42,6 +47,7 @@ const Context = ({ children }) => {
         getEarthquakes,
         flyToHandler,
         key,
+        parsedAndCastedMagnitude
       }}
     >
       {children}

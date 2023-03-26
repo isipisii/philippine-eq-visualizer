@@ -8,7 +8,7 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Menu = ({ setPopUpInfo }) => {
-  const { flyToHandler, earthquakes } = useContext(GlobalContext);
+  const { flyToHandler, earthquakes, parsedAndCastedMagnitude} = useContext(GlobalContext);
   const [clicked, setClicked] = useState(false);
   const lastArr = earthquakes.length - 1
 
@@ -63,6 +63,7 @@ const Menu = ({ setPopUpInfo }) => {
               latitude={earthquake?.geometry?.coordinates[1]}
               flyToHandler={flyToHandler}
               setPopUpInfo={setPopUpInfo}
+              parsedAndCastedMagnitude={parsedAndCastedMagnitude}
             />
           ))}
         </div>
