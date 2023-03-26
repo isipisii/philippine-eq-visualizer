@@ -15,7 +15,7 @@ const ColorLegend = () => {
       </div>
 
       <div className='flex gap-2 items-center'>
-        <div className='bg-cyan-600 h-2 w-2 rounded-full'/>
+        <div className='text-yellow-400 h-2 w-2 rounded-full'/>
         <p className='text-[#fff]'>Major</p>
       </div>
 
