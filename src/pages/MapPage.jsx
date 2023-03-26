@@ -10,6 +10,7 @@ import Menu from "../components/Menu";
 import PopUp from "../components/PopUp";
 import Load from "../components/Load";
 import ColorLegend from "../components/ColorLegend";
+import Title from "../components/Title";
 
 const MapPage = () => {
   const { getEarthquakes, earthquakes, flyToHandler, loading, key } =
@@ -56,8 +57,9 @@ const MapPage = () => {
         }}
         style={{ width: "100%", height: "100vh" }}
         mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`}
-      >
+      > 
         <NavigationControl />
+        <Title />
         {earthquakeMarkers}
         <Menu setPopUpInfo={setPopUpInfo} />
         {popUpInfo && (
