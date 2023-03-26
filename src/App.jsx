@@ -53,7 +53,6 @@ const App = () => {
           longitude: 122.982,
           latitude: 11.552,
           zoom: 6,
-          pitch: 85
         }}
         style={{ width: "100%", height: "100vh" }}
         mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`}
