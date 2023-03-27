@@ -13,10 +13,9 @@ import ColorLegend from "../components/ColorLegend";
 import Title from "../components/Title";
 
 const MapPage = () => {
-  const { getEarthquakes, earthquakes, flyToHandler, loading, key } =
+  const { getEarthquakes, earthquakes, flyToHandler, loading, key, lastArr, handleOnFocus } =
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-  const lastArr = earthquakes.length - 1
 
   useEffect(() => {
     getEarthquakes();
@@ -35,6 +34,7 @@ const MapPage = () => {
             earthquake?.geometry?.coordinates[1],
             earthquake?.geometry?.coordinates[0]
           );
+          handleOnFocus(earthquake?.id)
         }}
         style={{ cursor: "pointer" }}
       >

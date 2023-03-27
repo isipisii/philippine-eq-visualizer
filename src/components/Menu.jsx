@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState} from "react";
 import EarthquakeDetails from "./EarthquakeDetails";
 import { GlobalContext } from "../utils/Context";
 
@@ -8,9 +8,8 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Menu = ({ setPopUpInfo }) => {
-  const { flyToHandler, earthquakes, parsedAndCastedMagnitude} = useContext(GlobalContext);
+  const { flyToHandler, earthquakes, parsedMagnitude, handleOnFocus, lastArr,} = useContext(GlobalContext);
   const [clicked, setClicked] = useState(false);
-  const lastArr = earthquakes.length - 1
 
   return (  
     <div
@@ -63,7 +62,9 @@ const Menu = ({ setPopUpInfo }) => {
               latitude={earthquake?.geometry?.coordinates[1]}
               flyToHandler={flyToHandler}
               setPopUpInfo={setPopUpInfo}
-              parsedAndCastedMagnitude={parsedAndCastedMagnitude}
+              parsedMagnitude={parsedMagnitude}
+              handleOnFocus={handleOnFocus}
+              id={earthquake?.id}
             />
           ))}
         </div>

@@ -3,7 +3,6 @@ import { ACTION_TYPES } from "./Actions";
 export const INITIAL_STATE = {
   earthquakes: [],
   loading: true,
-  magnitudeStyle: ""
 };
 
 export const reducer = (state, action) => {
@@ -18,5 +17,5 @@ export const reducer = (state, action) => {
         ...state,
         loading: action.payload
       }
-  }
+  } 
 };

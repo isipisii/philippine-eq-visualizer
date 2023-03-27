@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState, useEffect } from "react";
+import { createContext, useReducer, useRef} from "react";
 import { ACTION_TYPES } from "./Actions";
 import { INITIAL_STATE, reducer } from "./Reducer";
 import axios from "axios";
@@ -9,18 +9,22 @@ const GlobalContext = createContext();
 const Context = ({ children }) => {
   const key = import.meta.env.VITE_MAP_KEY;
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-
+  const lastArr = state.earthquakes.length - 1
+  const refs = useRef([]);
   const { map } = useMap();
 
   const getEarthquakes = async () => {
-    try { 
+    try {
       dispatch({ type: ACTION_TYPES.LOADING, payload: true });
       const response = await axios.get(
         `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=1&maxlatitude=20.97&minlatitude=3.86&maxlongitude=127.96&minlongitude=116.87`
       );
+      const datas = response.data.features.map((f) => (
+        {...f, isActive: false}
+        ));
       dispatch({
         type: ACTION_TYPES.FETCH_EQ_DATAS,
-        payload: response.data.features,
+        payload: datas,
       });
       dispatch({ type: ACTION_TYPES.LOADING, payload: false });
     } catch (error) {
@@ -28,6 +32,20 @@ const Context = ({ children }) => {
     }
   };
 
+  // for focusing the earthquake details
+  const handleOnFocus = (id) => {
+    const lastArr = state.earthquakes.length - 1;
+    const updatedEarthquakes = state.earthquakes[lastArr]?.map(earthquake => {
+      if (earthquake.id === id) {
+        return {...earthquake, isActive: true};
+      } else {
+        return {...earthquake, isActive: false};
+      }
+    });
+    dispatch({ type: ACTION_TYPES.FETCH_EQ_DATAS, payload: updatedEarthquakes });
+  };
+
+  //for flying into specific location when the marker or card is clicked
   const flyToHandler = (lat, longi) => {
     map.flyTo({
       center: [longi, lat],
@@ -35,10 +53,11 @@ const Context = ({ children }) => {
     });
   };
 
-  const parsedAndCastedMagnitude = (title) => {
+  // for parsing the magnitude
+  const parsedMagnitude = (title) => {
     const magnitude = title.split("").slice(1, 5).join("");
     return parseFloat(magnitude);
-  }
+  };
 
   return (
     <GlobalContext.Provider
@@ -47,7 +66,10 @@ const Context = ({ children }) => {
         getEarthquakes,
         flyToHandler,
         key,
-        parsedAndCastedMagnitude
+        parsedMagnitude,
+        handleOnFocus,
+        lastArr,
+        refs
       }}
     >
       {children}
