@@ -8,7 +8,7 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
   const magnitude = parsedMagnitude(title);
   const markerRef = useRef(null)
 
-  // for automatic scroll when the specific earthquake is true
+  // for automatic scrolling when the specific earthquake marker and earthquake details is clicked 
   useEffect(() => {
     if(earthquake?.isActive){
       markerRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -34,13 +34,13 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
 
   return (
     <div
+      ref={markerRef}
       className={`p-4 bg-[#403e3ea3] ${earthquake?.isActive ? "border-[2px] border-white scale-105" : null} hover:scale-105 transition rounded-[7px] flex justify-between cursor-pointer active:bg-[#343333a3]`}
       onClick={() => {
         flyToHandler(latitude, longitude);
         setPopUpInfo(earthquake);
         handleOnFocus(earthquake?.id);
       }}
-      ref={markerRef}
     >
       <div>
         <p className="text-white font-bold md:text-[1rem] sm:text-[.9rem] text-[.8rem] font-ubuntu sm:mb-2 mb-1" >{place}</p>

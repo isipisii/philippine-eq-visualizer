@@ -24,6 +24,7 @@
     "react-icons": "^4.8.0",
     "react-loaders": "^3.0.1",
     "react-map-gl": "^7.0.21",
+    "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8"
   },
   "devDependencies": {
