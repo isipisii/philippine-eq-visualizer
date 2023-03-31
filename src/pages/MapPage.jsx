@@ -17,6 +17,8 @@ const MapPage = () => {
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
 
+  console.log(earthquakes)
+
   useEffect(() => {
     getEarthquakes();
   }, []);
