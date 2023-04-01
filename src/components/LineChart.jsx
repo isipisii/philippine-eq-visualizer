@@ -61,28 +61,28 @@ const LineChart = ({ isChartOpen, setIsChartOpen }) => {
   };
 
   return (
-      <div
-        className={`absolute z-50 
-        bg-[#020202a0]  rounded-2xl backdrop-blur-xl  h-[70vh] w-[90vw] md:w-[70vw] p-8 md:p-10
+    <div
+      className={`absolute z-50 
+        bg-[#020202a0]  rounded-2xl backdrop-blur-xl h-[60vh] md:h-[70vh] w-[95vw] md:w-[70vw] p-8 md:p-10
         ${
           isChartOpen
-            ? "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500" 
-            : "top-[-200%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500" 
+            ? "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
+            : "top-[-200%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
         }
         `}
-      >
-        <div className="flex items-center w-full justify-between">
-          <h1 className=" text-center text-[#ffffffd5] font-semibold text-[1.3rem] md:text-[1.5rem]">
-            Magnitude Chart
-          </h1>
-          <FontAwesomeIcon
-            icon={faXmark}
-            className="text-[1.5rem] text-[white] hover:text-[#ffffff94]"
-            onClick={() => setIsChartOpen((prevState) => !prevState)}
-          />
-        </div>
-        <Line data={earthquakesData} options={options} />
+    >
+      <div className="flex items-center w-full justify-between">
+        <h1 className=" text-center text-[#ffffffd5] font-semibold text-[1.3rem] md:text-[1.5rem]">
+          Magnitude Chart
+        </h1>
+        <FontAwesomeIcon
+          icon={faXmark}
+          className="text-[1.5rem] text-[white] hover:text-[#ffffff94]"
+          onClick={() => setIsChartOpen((prevState) => !prevState)}
+        />
       </div>
+      <Line data={earthquakesData} options={options} />
+    </div>
   );
 };
 
