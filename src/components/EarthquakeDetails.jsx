@@ -7,8 +7,8 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
   const normalTime = date.toLocaleString();
   const magnitude = parsedMagnitude(title);
   const markerRef = useRef(null)
-
-  // for automatic scrolling when the specific earthquake marker and earthquake details is clicked 
+  
+  // for automatic scrolling when the specific earthquake marker and earthquake detail is clicked 
   useEffect(() => {
     if(earthquake?.isActive){
       markerRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -31,7 +31,6 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
     styleMagnitude(magnitude);
   }, [magnitude]);
   
-
   return (
     <div
       ref={markerRef}

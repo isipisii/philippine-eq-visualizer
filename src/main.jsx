@@ -7,10 +7,10 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MapProvider>
-      <Context>
-        <App />
-      </Context>
-    </MapProvider>
+      <MapProvider>
+        <Context>
+          <App />
+        </Context>
+      </MapProvider>
   </React.StrictMode>
 );

@@ -53,10 +53,24 @@ const Context = ({ children }) => {
     });
   };
 
+
   // for parsing the magnitude
   const parsedMagnitude = (title) => {
     const magnitude = title.split("").slice(1, 5).join("");
     return parseFloat(magnitude);
+  };
+
+  // stored days fo line chart
+  const getDays = () => {
+    const days = [];
+    state.earthquakes[lastArr].forEach((e) => {
+      const date = new Date(e?.properties?.time);
+      const normalTime = date.toLocaleString();
+      const day = normalTime.split(" ")[0].split("/")[1];
+      days.push(day);
+    });
+
+    return days;
   };
 
   return (
@@ -69,6 +83,7 @@ const Context = ({ children }) => {
         parsedMagnitude,
         handleOnFocus,
         lastArr,
+        getDays
       }}
     >
       {children}

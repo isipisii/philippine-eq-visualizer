@@ -4,7 +4,7 @@ const App = () => {
   return (
     <>
       <MapPage/>
-    </>
+    </> 
   )
 }
 

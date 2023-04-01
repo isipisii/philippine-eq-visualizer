@@ -4,8 +4,7 @@ import { GlobalContext } from "../utils/Context";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-// import ReactDatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+
 
 const Menu = ({ setPopUpInfo }) => {
   const { flyToHandler, earthquakes, parsedMagnitude, handleOnFocus, lastArr } = useContext(GlobalContext);

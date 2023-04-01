@@ -11,13 +11,14 @@ import PopUp from "../components/PopUp";
 import Load from "../components/Load";
 import ColorLegend from "../components/ColorLegend";
 import Title from "../components/Title";
+import LineChart from "../components/LineChart";
+import ChartToggler from "../components/ChartToggler";
 
 const MapPage = () => {
   const { getEarthquakes, earthquakes, flyToHandler, loading, key, lastArr, handleOnFocus } =
     useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-
-  console.log(earthquakes)
+  const [isChartOpen, setIsChartOpen] = useState(false)
 
   useEffect(() => {
     getEarthquakes();
@@ -60,7 +61,8 @@ const MapPage = () => {
         style={{ width: "100%", height: "100vh" }}
         mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`}
       > 
-        <NavigationControl />
+        <NavigationControl  style={{ backgroundColor: "#020202a0", }} />
+        <ChartToggler setIsChartOpen={setIsChartOpen}/>
         <Title />
         {earthquakeMarkers}
         <Menu setPopUpInfo={setPopUpInfo} />
@@ -69,6 +71,7 @@ const MapPage = () => {
           <PopUp popUpInfo={popUpInfo} setPopUpInfo={setPopUpInfo} />
         )}
         <ColorLegend />
+        <LineChart isChartOpen={isChartOpen} setIsChartOpen={setIsChartOpen}/>
       </Map>
     </>
   );

@@ -27,3 +27,15 @@ background-color: rgba(232, 231, 231, 0.29);
 body::-webkit-scrollbar{
    display: none;
 }
+
+body{
+    font-family: "Ubuntu", sans-serif;
+}
+
+.maplibregl-ctrl-ctrl-zoom-out {
+    color: white;
+}
+
+.maplibregl-ctrl-ctrl-zoom-in {
+    color: white;
+}
