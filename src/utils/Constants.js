@@ -1,6 +1,7 @@
 export const ACTION_TYPES = {
   FETCH_EQ_DATAS: "FETCH_EQ_DATAS",
   LOADING: "LOADING",
+  REMOVE_PULSE: "REMOVE_PULSE",
 };
 
 export const ENERGIES = [

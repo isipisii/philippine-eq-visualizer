@@ -1,5 +1,5 @@
-import { createContext, useReducer } from "react";
-import { ACTION_TYPES } from "./Actions";
+import { createContext, useReducer, useState, useCallback } from "react";
+import { ACTION_TYPES } from "./Constants";
 import { INITIAL_STATE, reducer } from "./Reducer";
 import axios from "axios";
 import { useMap } from "react-map-gl";
@@ -11,7 +11,9 @@ const Context = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const lastArr = state.earthquakes.length - 1;
   const { map } = useMap();
-
+  const [mouseEnterChart, setMouseEnterChart] = useState(false);
+  const [mouseEnterPulse, setMouseEnterPulse] = useState(false);
+  const { earthquakes, loading, pulseRemoved } = state
   const getEarthquakes = async () => {
     try {
       dispatch({ type: ACTION_TYPES.LOADING, payload: true });
@@ -33,7 +35,7 @@ const Context = ({ children }) => {
   };
 
   // for focusing the earthquake details
-  const handleOnFocus = (id) => {
+  const handleOnFocus = useCallback((id) => {
     const updatedEarthquakes = state.earthquakes[lastArr]?.map((earthquake) => {
       return earthquake.id === id
         ? { ...earthquake, isActive: !earthquake?.isActive }
@@ -43,16 +45,16 @@ const Context = ({ children }) => {
       type: ACTION_TYPES.FETCH_EQ_DATAS,
       payload: updatedEarthquakes,
     });
-  };
+  }, [state.earthquakes, lastArr]);
+
 
   //for flying into specific location when the marker or card is clicked
-  const flyToHandler = (lat, longi) => {
+  const flyToHandler = useCallback((lat, longi) => {
     map.flyTo({
       center: [longi, lat],
       zoom: 7,
     });
-  };
-
+  }, [map]);
 
   // for parsing the magnitude
   const parsedMagnitude = (title) => {
@@ -73,17 +75,28 @@ const Context = ({ children }) => {
     return days;
   };
 
+  const handleRemovePulse = () => {
+    dispatch({ type: ACTION_TYPES.REMOVE_PULSE, payload: !state.pulseRemoved });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
-        ...state,
+        earthquakes, 
+        loading, 
+        pulseRemoved,
         getEarthquakes,
         flyToHandler,
         key,
         parsedMagnitude,
         handleOnFocus,
         lastArr,
-        getDays
+        getDays,
+        handleRemovePulse,
+        mouseEnterChart,
+        setMouseEnterChart,
+        mouseEnterPulse, 
+        setMouseEnterPulse
       }}
     >
       {children}

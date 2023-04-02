@@ -1,8 +1,9 @@
-import { ACTION_TYPES } from "./Actions";
+import { ACTION_TYPES } from "./Constants";
 
 export const INITIAL_STATE = {
   earthquakes: [],
   loading: true,
+  pulseRemoved: false,
 };
 
 export const reducer = (state, action) => {
@@ -16,6 +17,11 @@ export const reducer = (state, action) => {
       return{
         ...state,
         loading: action.payload
+      }
+    case ACTION_TYPES.REMOVE_PULSE:
+      return{
+        ...state,
+        pulseRemoved: action.payload,
       }
   } 
 };

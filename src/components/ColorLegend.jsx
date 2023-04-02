@@ -1,4 +1,4 @@
-import { ENERGIES } from "../utils/Actions";
+import { ENERGIES } from "../utils/Constants";
 
 const ColorLegend = () => {
   return (

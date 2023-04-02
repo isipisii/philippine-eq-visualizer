@@ -12,14 +12,27 @@ import Load from "../components/Load";
 import ColorLegend from "../components/ColorLegend";
 import Title from "../components/Title";
 import LineChart from "../components/LineChart";
-import ChartToggler from "../components/ChartToggler";
+import Togglers from "../components/Togglers";
 
 const MapPage = () => {
-  const { getEarthquakes, earthquakes, flyToHandler, loading, key, lastArr, handleOnFocus } =
-    useContext(GlobalContext);
+  const {
+    getEarthquakes,
+    earthquakes,
+    flyToHandler,
+    loading,
+    key,
+    lastArr,
+    handleOnFocus,
+    handleRemovePulse,
+    setMouseEnterChart,
+    mouseEnterChart,
+    mouseEnterPulse, 
+    setMouseEnterPulse,
+    pulseRemoved
+  } = useContext(GlobalContext);
   const [popUpInfo, setPopUpInfo] = useState(null);
-  const [isChartOpen, setIsChartOpen] = useState(false)
-
+  const [isChartOpen, setIsChartOpen] = useState(false);
+  
   useEffect(() => {
     getEarthquakes();
   }, []);
@@ -37,7 +50,7 @@ const MapPage = () => {
             earthquake?.geometry?.coordinates[1],
             earthquake?.geometry?.coordinates[0]
           );
-          handleOnFocus(earthquake?.id)
+          handleOnFocus(earthquake?.id);
         }}
         style={{ cursor: "pointer" }}
       >
@@ -47,7 +60,7 @@ const MapPage = () => {
   });
 
   return loading ? (
-    <Load loading={loading}/>
+    <Load loading={loading} />
   ) : (
     <>
       <Map
@@ -60,9 +73,17 @@ const MapPage = () => {
         }}
         style={{ width: "100%", height: "100vh" }}
         mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${key}`}
-      > 
-        <NavigationControl  style={{ backgroundColor: "#020202a0", }} />
-        <ChartToggler setIsChartOpen={setIsChartOpen}/>
+      >
+        <NavigationControl style={{ backgroundColor: "#020202a0" }} />
+        <Togglers
+          handleRemovePulse={ handleRemovePulse}
+          setIsChartOpen={setIsChartOpen}
+          setMouseEnterChart={setMouseEnterChart} 
+          mouseEnterChart={mouseEnterChart}
+          mouseEnterPulse={mouseEnterPulse} 
+          setMouseEnterPulse={setMouseEnterPulse}
+          pulseRemoved={pulseRemoved}
+        />
         <Title />
         {earthquakeMarkers}
         <Menu setPopUpInfo={setPopUpInfo} />
@@ -71,7 +92,7 @@ const MapPage = () => {
           <PopUp popUpInfo={popUpInfo} setPopUpInfo={setPopUpInfo} />
         )}
         <ColorLegend />
-        <LineChart isChartOpen={isChartOpen} setIsChartOpen={setIsChartOpen}/>
+        <LineChart isChartOpen={isChartOpen} setIsChartOpen={setIsChartOpen} />
       </Map>
     </>
   );
