@@ -72,7 +72,7 @@ const LineChart = ({ isChartOpen, setIsChartOpen }) => {
         `}
     >
       <div className="flex items-center w-full justify-between">
-        <h1 className=" text-center text-[#ffffffd5] font-semibold text-[1.3rem] md:text-[1.5rem]">
+        <h1 className=" text-center text-[#ffffffd5] font-semibold text-[1.3rem] md:text-[1.5rem] font-ubuntu">
           Magnitude Chart
         </h1>
         <FontAwesomeIcon
