@@ -36,7 +36,7 @@ const MapPage = () => {
   useEffect(() => {
     getEarthquakes();
   }, []);
-
+  
   const earthquakeMarkers = earthquakes[lastArr]?.map((earthquake, index) => {
     return (
       <Marker

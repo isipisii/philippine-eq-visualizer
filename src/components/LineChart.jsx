@@ -27,8 +27,7 @@ const LineChart = ({ isChartOpen, setIsChartOpen }) => {
       legend: {
         display: true,
       },
-    },
-
+    }, 
     animation: {
       duration: 2000,
       easing: "easeInOutQuad",

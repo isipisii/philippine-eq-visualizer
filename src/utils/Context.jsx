@@ -14,6 +14,7 @@ const Context = ({ children }) => {
   const [mouseEnterChart, setMouseEnterChart] = useState(false);
   const [mouseEnterPulse, setMouseEnterPulse] = useState(false);
   const { earthquakes, loading, pulseRemoved } = state
+  
   const getEarthquakes = async () => {
     try {
       dispatch({ type: ACTION_TYPES.LOADING, payload: true });

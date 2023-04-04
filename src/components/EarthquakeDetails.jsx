@@ -20,7 +20,7 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
     function styleMagnitude(m) {
       if (m >= 1.0 && m <= 4.9) {
         setColor("text-lime-600");
-      } else if (m >= 5.0 && m <= 6.0) {
+      } else if (m >= 5.0 && m <= 6.9) {
         setColor("text-cyan-600");
       } else if (m >= 7.0 && m <= 7.9) {
         setColor("text-yellow-400")
@@ -42,7 +42,7 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
       }}
     >
       <div>
-        <p className="text-white font-bold md:text-[1rem] sm:text-[.9rem] text-[.8rem] font-ubuntu sm:mb-2 mb-1" >{place}</p>
+        <p className="text-white font-bold md:text-[1rem] sm:text-[.9rem] text-[.8rem] font-ubuntu sm:mb-2 mb-1" >{place ? place : "Undefined"}</p>
         <p className="text-[#ffffff8b] font-ubuntu sm:text-[.8rem] text-[.7rem] ">{normalTime}</p>
       </div>
       <div>
