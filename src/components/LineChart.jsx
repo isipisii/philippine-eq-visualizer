@@ -65,8 +65,8 @@ const LineChart = ({ isChartOpen, setIsChartOpen }) => {
         bg-[#020202a0]  rounded-2xl backdrop-blur-xl h-[60vh] md:h-[70vh] w-[95vw] md:w-[70vw] p-8 md:p-10
         ${
           isChartOpen
-            ? "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
-            : "top-[-200%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
+            ? "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 "
+            : "top-[-200%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 opacity-5"
         }
         `}
     >
