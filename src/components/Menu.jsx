@@ -12,7 +12,7 @@ const Menu = ({ setPopUpInfo }) => {
 
   return (  
     <div
-      className={`menu absolute rounded-2xl h-[85%] md:h-auto w-[100%] md:w-[38%]
+      className={`menu absolute rounded-2xl h-[85%] md:h-auto w-[100%] md:w-[38%] z-10
       ${
         clicked
           ? "bottom-[-79%] transition-all duration-500"
