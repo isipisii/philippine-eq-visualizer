@@ -6,6 +6,7 @@ const Title = () => {
       <h1 className="font-ubuntu font-bold text-[#FFFFFF] text-[1rem] md:text-[1.2rem] ">
         Earthquakes <span className="text-[#FFE925]">PH</span>
       </h1>
+      <p className="text-[#ffffff8c] font-ubuntu text-[.55rem] text-right">by Alessandro Benig</p>
     </div>
   );
 };
