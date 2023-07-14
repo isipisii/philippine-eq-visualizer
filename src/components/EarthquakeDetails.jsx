@@ -42,7 +42,7 @@ const EarthquakeDetails = ({ title, time, longitude, latitude, flyToHandler, ear
       }}
     >
       <div>
-        <p className="text-white font-bold md:text-[1rem] sm:text-[.9rem] text-[.8rem] font-ubuntu sm:mb-2 mb-1" >{place ? place : "Undefined"}</p>
+        <p className="text-white font-bold md:text-[1rem] sm:text-[.9rem] text-[.8rem] font-ubuntu sm:mb-2 mb-1" >{place ? place : "Unidentified"}</p>
         <p className="text-[#ffffff8b] font-ubuntu sm:text-[.8rem] text-[.7rem] ">{normalTime}</p>
       </div>
       <div>
